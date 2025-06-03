@@ -1,5 +1,4 @@
 __pycache__/
-*.pkl
 *.log
 *.exe
 venv/
