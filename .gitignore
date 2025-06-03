@@ -1,3 +1,9 @@
-# dependencies
-*/vendor
-/.idea
+__pycache__/
+*.pkl
+*.log
+*.exe
+venv/
+.idea/
+*.pyc
+performance_by_*.png
+ecc_pre.json

@@ -84,11 +84,13 @@ func EncryptMessageByAESKey(message []byte, keyBytes []byte) (cipherText []byte,
 // Encrypt the message
 // AES GCM + Proxy Re-Encryption
 func Encrypt(message string, pubKey *ecdsa.PublicKey) (cipherText []byte, capsule *Capsule, err error) {
-	capsule, keyBytes, err := encryptKeyGen(pubKey)
+
+	capsule, keyBytes, err := encryptKeyGen(pubKey)// generate E,V key-pairs, and s = v + e * H2(E || V), K' = (pk_A)^{e+v}
+
 	if err != nil {
 		return nil, nil, err
 	}
-	key := hex.EncodeToString(keyBytes)
+	key := hex.EncodeToString(keyBytes) // K' in hex
 	// use aes gcm algorithm to encrypt
 	// mark keyBytes[:12] as nonce
 	cipherText, err = GCMEncrypt([]byte(message), key[:32], keyBytes[:12], nil)
@@ -141,6 +143,7 @@ func ReKeyGen(aPriKey *ecdsa.PrivateKey, bPubKey *ecdsa.PublicKey) (*big.Int, *e
 	}
 	// get d = H3(X_A || pk_B || pk_B^{x_A})
 	point := curve.PointScalarMul(bPubKey, priX.D)
+	
 	d := utils.HashToCurve(
 		utils.ConcatBytes(
 			utils.ConcatBytes(
