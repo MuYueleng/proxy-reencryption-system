@@ -93,7 +93,7 @@ st.markdown("---")
 st.header("📞 帮助与联系", anchor="帮助与联系")
 st.write("如您在使用过程中遇到任何问题，可联系：")
 st.markdown("- 开发者邮箱：`Xiazhiyun@bupt.edu.cn`")
-st.markdown("- GitHub 项目地址：`https://github.com/your_repo`")
+st.markdown("- GitHub 项目地址：`https://github.com/MuYueleng/proxy-reencryption-system`")
 st.markdown("- QQ联系：3495494323")
 
 # ------------------ 页脚 ------------------
